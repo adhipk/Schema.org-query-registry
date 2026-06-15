@@ -1,0 +1,18 @@
+services:
+  redis:
+    image: redis:7-alpine
+    command: redis-server --maxmemory 128mb --maxmemory-policy allkeys-lru
+    ports:
+      - "6379:6379"
+
+  api:
+    build: .
+    environment:
+      PORT: 3000
+      REDIS_URL: redis://redis:6379
+      SCHEMA_ORG_URL: https://schema.org/version/latest/schemaorg-current-https.jsonld
+      SCHEMA_CACHE_TTL_SECONDS: 86400
+    ports:
+      - "3000:3000"
+    depends_on:
+      - redis
