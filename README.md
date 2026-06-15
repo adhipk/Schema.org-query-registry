@@ -43,6 +43,23 @@ Or run the whole stack:
 docker compose up --build
 ```
 
+## Validate
+
+```bash
+npm run validate
+npm run build
+```
+
+Validation includes:
+
+- TypeScript typecheck
+- Unit tests for Schema.org JSON-LD index building
+- Search ranking tests
+- HTTP route tests using a mocked registry
+- GitHub Actions CI on push and pull request
+
+See [`docs/VALIDATION.md`](docs/VALIDATION.md) for the full manual validation checklist.
+
 ## Endpoints
 
 ### Health
